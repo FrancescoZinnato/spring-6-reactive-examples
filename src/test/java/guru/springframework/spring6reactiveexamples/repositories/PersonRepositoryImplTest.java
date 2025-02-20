@@ -93,7 +93,7 @@ class PersonRepositoryImplTest {
     }
 
     @Test
-    void testGetById() {
+    void testGetByName() {
         Mono<Person> personMono = repo.findAll().filter(person -> person.getFirstName().equals("Fiona")).next();
 
         personMono.subscribe(person -> System.out.println(person.getFirstName()));
