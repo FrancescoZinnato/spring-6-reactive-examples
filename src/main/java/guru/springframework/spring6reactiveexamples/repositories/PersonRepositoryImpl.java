@@ -12,13 +12,13 @@ public class PersonRepositoryImpl implements PersonRepository {
     Person jesse = Person.builder().id(4).firstName("Jesse").lastName("Porter").build();
 
     @Override
-    public Mono<Person> getById(Integer id) {
-        return Mono.just(michael);
+    public Flux<Person> findAll() {
+        return Flux.just(michael, fiona, sam, jesse);
     }
 
     @Override
-    public Flux<Person> findAll() {
-        return Flux.just(michael, fiona, sam, jesse);
+    public Mono<Person> getById(final Integer id) {
+        return findAll().filter(person -> person.getId().equals(id)).next();
     }
 
 }
